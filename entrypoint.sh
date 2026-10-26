@@ -72,7 +72,7 @@ MODIFIED_STARTUP="$(printf '%s' "$STARTUP" | sed -e 's/{{/${/g' -e 's/}}/}/g')"
 printf ':/home/container$ %s\n' "$MODIFIED_STARTUP"
 # Wrapper stays PID 1 in order to manage two processes and deliver signals.
 # exec within the child shell makes the game/script its direct process.
-/bin/bash -c "exec $MODIFIED_STARTUP" &
+/bin/bash -c "exec $MODIFIED_STARTUP" </dev/stdin &
 game_pid=$!
 
 set +e
