@@ -4,9 +4,11 @@ on:
     branches: [main]
     tags: ['v*']
   workflow_dispatch:
+
 permissions:
   contents: read
   packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,10 +24,10 @@ jobs:
         id: meta
         with:
           images: ghcr.io/${{ github.repository }}
-tags: |
-  type=raw,value=1.4,enable=${{ github.ref == 'refs/heads/main' }}
-  type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-  type=ref,event=tag
+          tags: |
+            type=raw,value=1.5,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=ref,event=tag
       - uses: docker/build-push-action@v6
         with:
           context: .
