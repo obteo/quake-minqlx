@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1
 # Compatible with the proven Quake Live/minqlx Debian 12 SteamCMD runtime.
 FROM python:3.9-slim-bookworm AS python39
-RUN pip install --no-cache-dir "redis==5.2.1" "pyzmq==26.2.1"
+RUN pip install --no-cache-dir \
+    "redis==5.2.1" \
+    "pyzmq==26.2.1" \
+    "requests==2.32.4"
 
 FROM ghcr.io/ptero-eggs/steamcmd:debian
 ARG DEBIAN_FRONTEND=noninteractive
